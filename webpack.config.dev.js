@@ -1,5 +1,5 @@
- import path from 'path';
-
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 
 export default {
@@ -28,15 +28,21 @@ export default {
 
   },
 
-  plugins: [],
+  plugins: [
+    //Cria um arquivo HTML que já inclui a referencia para o bundle JS
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      inject: true
+    })
+  ],
 
   module: {
 
     loaders: [
 
-      {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
+      { test: /\.js$/, exclude: /node_modules/, loaders: ['babel'] },
 
-      {test: /\.css$/, loaders: ['style','css']}
+      { test: /\.css$/, loaders: ['style', 'css'] }
 
     ]
 
